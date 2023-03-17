@@ -14,15 +14,7 @@ ZLL<T>::ZLL()
 template <typename T>
 ZLL<T>::~ZLL()
 {
-    Node<T> *curr = this->head;
-    while (curr != nullptr)
-    {
-        Node<T> *temp = curr->next;
-        delete curr;
-        curr = temp;
-    }
-    head = nullptr;
-    tail = nullptr;
+   this->empty();
     cout << "testing" << endl;
 }
 template <typename T>
@@ -270,4 +262,27 @@ void ZLL<T>::remove(Node<T> *nodeToDelete)
         }
     }
     delete (nodeToDelete);
+}
+
+template <typename T>
+bool ZLL<T>::empty()
+{
+   Node<T> *curr = this->head;
+    while (curr != nullptr)
+    {
+        Node<T> *temp = curr->next;
+        delete curr;
+        curr = temp;
+    }
+    head = nullptr;
+    tail = nullptr;
+    return true;
+}
+
+template <typename T>
+bool ZLL<T>::isEmpty()
+{
+    if(this->head==nullptr)
+    return true;
+    return false;
 }

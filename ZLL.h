@@ -31,14 +31,7 @@ public:
     bool done();
     T getNext();
     void remove(Node<T> *nodeToDelete);
-
-    // bool isZany(int a)
-    // {
-    //     return (a % 2);
-    // }
-    // bool isZany(string a)
-    // {
-    //     return ((a.length() > 0) && isupper(a[0]));
-    // }
+    bool empty();
+    bool isEmpty();
 };
 #include "ZLL.cpp"
