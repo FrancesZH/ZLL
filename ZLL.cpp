@@ -1,8 +1,6 @@
 #include <iostream>
 #include "Zany.h"
 using namespace std;
-// template class ZLL<string>;
-// template class ZLL<int>;
 
 template <typename T>
 ZLL<T>::ZLL()
@@ -14,8 +12,7 @@ ZLL<T>::ZLL()
 template <typename T>
 ZLL<T>::~ZLL()
 {
-   this->empty();
-    cout << "testing" << endl;
+    this->empty();
 }
 template <typename T>
 bool ZLL<T>::front(const T &dataToAdd)
@@ -134,12 +131,14 @@ int ZLL<T>::removeZany()
     Node<T> *targetNode = this->head;
     while (targetNode != nullptr)
     {
+        Node<T> *tempNode = targetNode->next;
+
         if (isZany(targetNode->data))
         {
             remove(targetNode);
             ZanyCount++;
         }
-        targetNode = targetNode->next;
+        targetNode =tempNode;
     }
     return ZanyCount;
 }
@@ -151,19 +150,20 @@ int ZLL<T>::removeNonZany()
     Node<T> *targetNode = this->head;
     while (targetNode != nullptr)
     {
+        Node<T> *tempNode = targetNode->next;
+
         if (!isZany(targetNode->data))
         {
             remove(targetNode);
             nonZanyCount++;
         }
-        targetNode = targetNode->next;
+        targetNode = tempNode;
     }
     return nonZanyCount;
 }
 template <typename T>
 bool ZLL<T>::promoteZany()
 {
-    Node<T> *next = nullptr;
     Node<T> *targetNode = this->head;
     while (targetNode != nullptr)
     {
@@ -172,8 +172,6 @@ bool ZLL<T>::promoteZany()
         {
             Node<T> *tempNode = targetNode;
             targetNode = targetNode->next;
-            tempNode->prev->next = tempNode->next->prev;
-            tempNode->next->prev = tempNode->prev->next;
             front(tempNode->data);
             remove(tempNode);
         }
@@ -199,7 +197,7 @@ bool ZLL<T>::done()
 {
     if (tracker == nullptr)
     {
-        delete tracker; //???
+        //delete tracker; //???
         return true;
     }
     return false;
@@ -267,7 +265,7 @@ void ZLL<T>::remove(Node<T> *nodeToDelete)
 template <typename T>
 bool ZLL<T>::empty()
 {
-   Node<T> *curr = this->head;
+    Node<T> *curr = this->head;
     while (curr != nullptr)
     {
         Node<T> *temp = curr->next;
@@ -282,7 +280,7 @@ bool ZLL<T>::empty()
 template <typename T>
 bool ZLL<T>::isEmpty()
 {
-    if(this->head==nullptr)
-    return true;
+    if (this->head == nullptr)
+        return true;
     return false;
 }
